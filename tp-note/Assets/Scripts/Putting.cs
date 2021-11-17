@@ -19,6 +19,7 @@ public class Putting : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Space))
         {
+            force = transform.position - Camera.main.transform.position;
             rb.AddForce(force * intensity);
         }
     }

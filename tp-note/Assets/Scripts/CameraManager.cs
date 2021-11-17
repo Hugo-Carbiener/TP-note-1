@@ -7,12 +7,12 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     private GameObject golfball;
     [SerializeField]
-    private Vector3 targetPosition;
-    [SerializeField]
     private float rotationSpeed = 1;
+    private Vector3 offset;
 
     void Update()
     {
+
         transform.LookAt(golfball.transform);
         if(Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow))
         {
