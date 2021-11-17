@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Hole : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnCollisionEnter(Collision collision)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (collision.gameObject.tag != "Player") return;
+        if (collision.gameObject.tag == "Player")
+        {
+            Debug.Log("Félicitations ! Vous gagnez la partie.");
+        }
     }
 }
