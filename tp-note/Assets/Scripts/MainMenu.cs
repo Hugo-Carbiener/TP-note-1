@@ -27,6 +27,13 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(levels.level1.ToString());
     }
     
+    public void LoadMenu()
+    {
+        Debug.Log("Aled");
+        SceneManager.LoadScene("MainMenu");
+        this.transform.Find("MainMenuUI").gameObject.SetActive(true);
+        this.transform.Find("LevelSelectUI").gameObject.SetActive(false);
+    }
     public void Menu()
     {
         this.transform.Find("MainMenuUI").gameObject.SetActive(true);
