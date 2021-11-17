@@ -29,7 +29,6 @@ public class MainMenu : MonoBehaviour
     
     public void LoadMenu()
     {
-        Debug.Log("Aled");
         SceneManager.LoadScene("MainMenu");
         this.transform.Find("MainMenuUI").gameObject.SetActive(true);
         this.transform.Find("LevelSelectUI").gameObject.SetActive(false);
@@ -51,6 +50,10 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(level.ToString());
     }
 
+    public void LoadLevelByString(string level)
+    {
+        SceneManager.LoadScene(level);
+    }
 
 }
 
