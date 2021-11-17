@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Putting : MonoBehaviour
 {
@@ -8,7 +10,10 @@ public class Putting : MonoBehaviour
     [SerializeField]
     private Vector3 force = new Vector3(1,0,0);
     [SerializeField]
-    private float intensity = 1;
+    private float intensityBuildUp = 0.5f;
+    private float intensity = 0;
+    [SerializeField]
+    private Text intensityContainer;
 
     private void Start()
     {
@@ -17,9 +22,19 @@ public class Putting : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            intensity += intensityBuildUp;
+            intensityContainer.text = "intensity : " + intensity;
+        }
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            rb.AddForce(force * intensity);
+            if(rb.velocity == Vector3.zero)
+            {
+                force = transform.position - Camera.main.transform.position;
+                rb.AddForce(force * intensity);
+            }
+            intensity = 0;
         }
     }
 }
