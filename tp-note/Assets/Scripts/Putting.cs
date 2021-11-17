@@ -10,27 +10,40 @@ public class Putting : MonoBehaviour
     private Rigidbody rb;
     private Vector3 force;
     [SerializeField]
-    private float intensityBuildUp = 0.5f;
+    private float velocityMultiplier = 1f;
+    [SerializeField]
+    private float intensityBuildUp = 0.1f;
     [Range(0, 100)]
     private float intensity = 0;
     [SerializeField]
     private Slider intensityBar;
-    [SerializeField]
+    private GameObject shootIndicator;
+    private GameObject ShootIndicator;
     private Vector3 velocity;
     [SerializeField]
     private float minVelocity = 2f;
 
+    // for the shot indicator
+    private Color indicatorColor;
+    private Color newColor;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        shootIndicator = GameObject.Find("ShootIndicator");
+        indicatorColor = GameObject.Find("ShootIndicator").GetComponent<Image>().color;
+        newColor = indicatorColor;
+        newColor.r += 20;
     }
 
     private void Update()
     {
         // stop the ball if it is too slow
-        if (GetVectorNorm(rb.velocity) <= minVelocity)
+        if (GetVectorNorm(rb.velocity) <= minVelocity && rb.velocity != Vector3.zero)
         {
             rb.velocity = Vector3.zero;
+            shootIndicator.SetActive(true);
+            shootIndicator.GetComponent<Image>().color = indicatorColor;
         }
 
         velocity = rb.velocity;
@@ -42,6 +55,7 @@ public class Putting : MonoBehaviour
                 intensity += intensityBuildUp;
                 intensityBar.value = intensity;
                 intensityBar.GetComponentInChildren<Text>().text = "Intensity = " + intensity;
+                shootIndicator.GetComponent<Image>().color = newColor;
             } 
             else
             {
@@ -55,7 +69,8 @@ public class Putting : MonoBehaviour
             {
                 force = transform.position - Camera.main.transform.position;
                 force.y = 0;
-                rb.AddForce(force * intensity);
+                rb.AddForce(force * intensity * velocityMultiplier);
+                shootIndicator.SetActive(false);
             }
             intensity = 0;
         }
