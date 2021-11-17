@@ -41,6 +41,7 @@ public class Putting : MonoBehaviour
             if(rb.velocity == Vector3.zero)
             {
                 force = transform.position - Camera.main.transform.position;
+                force.y = 0;
                 rb.AddForce(force * intensity);
             }
             intensity = 0;
