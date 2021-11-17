@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+
 
 public class Putting : MonoBehaviour
 {
@@ -11,9 +11,10 @@ public class Putting : MonoBehaviour
     private Vector3 force = new Vector3(1,0,0);
     [SerializeField]
     private float intensityBuildUp = 0.5f;
+    [Range(0, 100)]
     private float intensity = 0;
     [SerializeField]
-    private Text intensityContainer;
+    private Slider intensityBar;
 
     private void Start()
     {
@@ -24,8 +25,16 @@ public class Putting : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            intensity += intensityBuildUp;
-            intensityContainer.text = "intensity : " + intensity;
+            if(intensity < 100)
+            {
+                intensity += intensityBuildUp;
+                intensityBar.value = intensity;
+                intensityBar.GetComponentInChildren<Text>().text = "Intensity = " + intensity;
+            } 
+            else
+            {
+                intensity = 100;
+            }
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
