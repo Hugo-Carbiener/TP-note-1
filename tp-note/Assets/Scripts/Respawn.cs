@@ -15,4 +15,18 @@ public class Respawn : MonoBehaviour
         }
     }
 
+
+    private void FixedUpdate()
+    {
+        GameObject[] resp;
+        if (Input.GetKeyDown("r"))
+        {
+            resp =  GameObject.FindGameObjectsWithTag("Player");
+            if (resp != null)
+            {
+                resp[0].transform.position = pos;
+            }
+        }
+    }
+
 }
