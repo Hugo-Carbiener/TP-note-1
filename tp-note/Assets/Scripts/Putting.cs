@@ -4,17 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+
 public class Putting : MonoBehaviour
 {
     private Rigidbody rb;
-    [SerializeField]
-    private Vector3 force = new Vector3(1,0,0);
+    private Vector3 force;
     [SerializeField]
     private float intensityBuildUp = 0.5f;
     [Range(0, 100)]
     private float intensity = 0;
     [SerializeField]
     private Slider intensityBar;
+    [SerializeField]
+    private Vector3 velocity;
+    [SerializeField]
+    private float minVelocity = 2f;
 
     private void Start()
     {
@@ -23,8 +27,16 @@ public class Putting : MonoBehaviour
 
     private void Update()
     {
+        // stop the ball if it is too slow
+        if (GetVectorNorm(rb.velocity) <= minVelocity)
+        {
+            rb.velocity = Vector3.zero;
+        }
+
+        velocity = rb.velocity;
         if (Input.GetKey(KeyCode.Space))
         {
+            // while intensity < 100 and space is pressed, build up intensity
             if(intensity < 100)
             {
                 intensity += intensityBuildUp;
@@ -38,6 +50,7 @@ public class Putting : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
+            // release ball
             if(rb.velocity == Vector3.zero)
             {
                 force = transform.position - Camera.main.transform.position;
@@ -46,5 +59,10 @@ public class Putting : MonoBehaviour
             }
             intensity = 0;
         }
+    }
+
+    private float GetVectorNorm(Vector3 vect)
+    {
+        return Mathf.Abs(vect.x) + Mathf.Abs(vect.y) + Mathf.Abs(vect.z);
     }
 }
