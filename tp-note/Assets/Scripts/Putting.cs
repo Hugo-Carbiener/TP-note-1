@@ -18,7 +18,6 @@ public class Putting : MonoBehaviour
     [SerializeField]
     private Slider intensityBar;
     private GameObject shootIndicator;
-    private GameObject ShootIndicator;
     private Vector3 velocity;
     [SerializeField]
     private float minVelocity = 2f;
@@ -27,6 +26,7 @@ public class Putting : MonoBehaviour
     private Color indicatorColor;
     private Color newColor;
 
+    private Vector3 lastPutPosition;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -34,6 +34,7 @@ public class Putting : MonoBehaviour
         indicatorColor = GameObject.Find("ShootIndicator").GetComponent<Image>().color;
         newColor = indicatorColor;
         newColor.r += 20;
+        lastPutPosition = this.transform.position;
     }
 
     private void Update()
@@ -41,7 +42,10 @@ public class Putting : MonoBehaviour
         // stop the ball if it is too slow
         if (GetVectorNorm(rb.velocity) <= minVelocity && rb.velocity != Vector3.zero)
         {
+            // stop the ball
             rb.velocity = Vector3.zero;
+
+            // update UI
             shootIndicator.SetActive(true);
             shootIndicator.GetComponent<Image>().color = indicatorColor;
         }
@@ -67,9 +71,15 @@ public class Putting : MonoBehaviour
             // release ball
             if(rb.velocity == Vector3.zero)
             {
+                // reg last known still position
+                lastPutPosition = this.transform.position;
+
+                // release the ball
                 force = transform.position - Camera.main.transform.position;
                 force.y = 0;
                 rb.AddForce(force * intensity * velocityMultiplier);
+
+                // update UI
                 shootIndicator.SetActive(false);
             }
             intensity = 0;
@@ -80,4 +90,6 @@ public class Putting : MonoBehaviour
     {
         return Mathf.Abs(vect.x) + Mathf.Abs(vect.y) + Mathf.Abs(vect.z);
     }
+
+    public Vector3 getLastPutPosition() { return this.lastPutPosition; }
 }

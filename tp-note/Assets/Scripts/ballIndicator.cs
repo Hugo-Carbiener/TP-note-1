@@ -9,7 +9,7 @@ public class ballIndicator : MonoBehaviour
     
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.position = golfball.transform.position;
     }

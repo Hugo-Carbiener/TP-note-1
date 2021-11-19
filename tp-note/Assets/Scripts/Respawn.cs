@@ -5,13 +5,15 @@ using UnityEngine;
 public class Respawn : MonoBehaviour
 {
     [SerializeField] private Vector3 pos = new Vector3(-8, 1, 0);
+    private Vector3 lastPutPosition;
+
 
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.tag != "Player") return;
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.transform.position = pos;
+            respawn(collision.gameObject);
         }
     }
 
@@ -24,9 +26,15 @@ public class Respawn : MonoBehaviour
             resp =  GameObject.FindGameObjectsWithTag("Player");
             if (resp != null)
             {
-                resp[0].transform.position = pos;
+                respawn(resp[0]);
             }
         }
     }
 
+    public void respawn(GameObject go)
+    {
+        lastPutPosition = go.GetComponent<Putting>().getLastPutPosition();
+        go.transform.position = lastPutPosition;
+        go.GetComponent<Rigidbody>().velocity = Vector3.zero;
+    }
 }

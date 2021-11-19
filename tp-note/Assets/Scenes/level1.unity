@@ -1319,7 +1319,7 @@ PrefabInstance:
       objectReference: {fileID: 496187797}
     - target: {fileID: -3727690593408303590, guid: 94139f59e6a13f74aae05b0df0d0e1cc, type: 3}
       propertyPath: velocityMultiplier
-      value: 20
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 544341253100675612, guid: 94139f59e6a13f74aae05b0df0d0e1cc, type: 3}
       propertyPath: m_Name
@@ -1386,6 +1386,10 @@ PrefabInstance:
       propertyPath: pos.x
       value: -7
       objectReference: {fileID: 0}
+    - target: {fileID: -5574104256926749686, guid: b6b620c10344b924d839283755c1d417, type: 3}
+      propertyPath: BallPrefab
+      value: 
+      objectReference: {fileID: 544341253100675612, guid: 94139f59e6a13f74aae05b0df0d0e1cc, type: 3}
     - target: {fileID: 7726999853931570268, guid: b6b620c10344b924d839283755c1d417, type: 3}
       propertyPath: m_Name
       value: Floor
