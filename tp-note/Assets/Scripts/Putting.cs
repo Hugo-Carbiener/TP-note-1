@@ -25,7 +25,6 @@ public class Putting : MonoBehaviour
     // for the shot indicator
     private Color indicatorColor;
     private Color newColor;
-
     private Vector3 lastPutPosition;
     private void Start()
     {
@@ -38,8 +37,7 @@ public class Putting : MonoBehaviour
     }
 
     private void Update()
-    {
-        // stop the ball if it is too slow
+    {   // stop the ball if it is too slow
         if (GetVectorNorm(rb.velocity) <= minVelocity && rb.velocity != Vector3.zero)
         {
             // stop the ball
@@ -48,6 +46,7 @@ public class Putting : MonoBehaviour
             // update UI
             shootIndicator.SetActive(true);
             shootIndicator.GetComponent<Image>().color = indicatorColor;
+            GetComponent<LineRenderer>().enabled = true;
         }
 
         velocity = rb.velocity;
@@ -81,6 +80,8 @@ public class Putting : MonoBehaviour
 
                 // update UI
                 shootIndicator.SetActive(false);
+                GetComponent<LineRenderer>().enabled = false;
+
             }
             intensity = 0;
         }
