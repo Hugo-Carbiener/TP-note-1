@@ -22,6 +22,8 @@ public class TabMenu : MonoBehaviour
         scoreManager = GetComponent<ScoreManager>();
         LevelNameText.text = SceneManager.GetActiveScene().name;
         StrikeAmountText.text = "Strikes: " + scoreManager.getStrikes();
+        GlobalStrikeAmountText.text = "Total Score: " + GlobalScoreManager.getGlobalStrikes();
+        tabMenu.SetActive(false);
     }
 
     private void Update()
@@ -41,5 +43,6 @@ public class TabMenu : MonoBehaviour
     {
         LevelNameText.text = SceneManager.GetActiveScene().name;
         StrikeAmountText.text = "Strikes: " + scoreManager.getStrikes();
+        GlobalStrikeAmountText.text = "Total Score: " + GlobalScoreManager.getGlobalStrikes();
     }
 }

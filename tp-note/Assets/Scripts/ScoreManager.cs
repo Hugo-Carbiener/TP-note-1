@@ -37,10 +37,16 @@ public class ScoreManager : MonoBehaviour
     {
         strikes += 1;
         StrikeAmountText.text = strikes.ToString();
+        GlobalScoreManager.addGlobalStrikes();
     }
 
     public int getStrikes()
     {
         return this.strikes;
+    }
+
+    public int getCurrentLevelStrikes()
+    {
+        return this.currentLevelStrikes;
     }
 }

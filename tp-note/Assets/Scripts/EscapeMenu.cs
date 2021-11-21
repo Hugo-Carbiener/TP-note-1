@@ -24,6 +24,12 @@ public class EscapeMenu : MonoBehaviour
         CloseMenu();
         SceneManager.LoadScene("MainMenu");
     }
+    public void victoryScreen()
+    {
+        CloseMenu();
+        SceneManager.LoadScene("VictoryScreen");
+    }
+
     public void Quit() 
     {
         Application.Quit();
