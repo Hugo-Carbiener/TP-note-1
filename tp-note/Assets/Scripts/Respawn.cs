@@ -8,7 +8,7 @@ public class Respawn : MonoBehaviour
     private Vector3 lastPutPosition;
 
 
-    private void OnCollisionExit(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag != "Player") return;
         if (collision.gameObject.tag == "Player")
