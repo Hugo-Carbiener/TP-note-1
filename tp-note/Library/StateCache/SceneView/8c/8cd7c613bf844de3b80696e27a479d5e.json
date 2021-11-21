@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"m_AlwaysRefresh":false,"showFog":true,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true,"showVisualEffectGraphs":true,"m_FxEnabled":true},"in2DMode":false,"pivot":{"x":48.852874755859378,"y":-10.700735092163086,"z":-18.787046432495118},"rotation":{"x":0.008608652278780938,"y":0.9730183482170105,"z":-0.22763052582740785,"w":0.03679853677749634},"size":47.673255920410159,"orthographic":false}
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"m_AlwaysRefresh":false,"showFog":true,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true,"showVisualEffectGraphs":true,"m_FxEnabled":true},"in2DMode":true,"pivot":{"x":-4.099575042724609,"y":-0.4881209433078766,"z":-0.7072638869285584},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":6.902341842651367,"orthographic":true}
+>>>>>>> PartIX-Score

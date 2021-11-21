@@ -15,7 +15,6 @@ public class Putting : MonoBehaviour
     private float intensityBuildUp = 0.1f;
     [Range(0, 100)]
     private float intensity = 0;
-    [SerializeField]
     private Slider intensityBar;
     private GameObject shootIndicator;
     private Vector3 velocity;
@@ -26,11 +25,17 @@ public class Putting : MonoBehaviour
     private Color indicatorColor;
     private Color newColor;
     private Vector3 lastPutPosition;
+
+    // for the score
+    private ScoreManager scoreManager;
+
     private void Start()
-    {
+    { 
         rb = GetComponent<Rigidbody>();
         shootIndicator = GameObject.Find("ShootIndicator");
         indicatorColor = GameObject.Find("ShootIndicator").GetComponent<Image>().color;
+        scoreManager = GameObject.Find("Canvas").GetComponent<ScoreManager>();
+        intensityBar = GameObject.Find("IntensityBar").GetComponent<Slider>();
         newColor = indicatorColor;
         newColor.r += 20;
         lastPutPosition = this.transform.position;
@@ -81,6 +86,9 @@ public class Putting : MonoBehaviour
                 // update UI
                 shootIndicator.SetActive(false);
                 GetComponent<LineRenderer>().enabled = false;
+
+                // add a strike
+                scoreManager.addStrike();
 
             }
             intensity = 0;
