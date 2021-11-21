@@ -26,11 +26,16 @@ public class Putting : MonoBehaviour
     private Color indicatorColor;
     private Color newColor;
     private Vector3 lastPutPosition;
+
+    // for the score
+    private ScoreManager scoreManager;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         shootIndicator = GameObject.Find("ShootIndicator");
         indicatorColor = GameObject.Find("ShootIndicator").GetComponent<Image>().color;
+        scoreManager = GameObject.Find("Canvas").GetComponent<ScoreManager>();
         newColor = indicatorColor;
         newColor.r += 20;
         lastPutPosition = this.transform.position;
@@ -81,6 +86,9 @@ public class Putting : MonoBehaviour
                 // update UI
                 shootIndicator.SetActive(false);
                 GetComponent<LineRenderer>().enabled = false;
+
+                // add a strike
+                scoreManager.addStrike();
 
             }
             intensity = 0;
