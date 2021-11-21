@@ -3148,7 +3148,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5229621678039711400}
         m_TargetAssemblyTypeName: EscapeMenu, Assembly-CSharp
-        m_MethodName: MainMenu
+        m_MethodName: victoryScreen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -23,7 +23,7 @@ public class Jump : MonoBehaviour
             {
                 // Reset vertical velocity to make jump amplitude 
                 // independent of current vertical speed.
-                rb.velocity = new Vector2(rb.velocity.x, 0f);
+                //rb.velocity = new Vector2(rb.velocity.x, 0f);
 
                 // Apply jump force to the rigidbody
                 rb.AddForce(up * verticalSpeed, ForceMode.Impulse);
